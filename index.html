@@ -1,0 +1,1755 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villas at the Vineyard HOA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🏡";
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:1" /><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23bg)"/><circle cx="200" cy="150" r="100" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="300" r="150" fill="rgba(255,255,255,0.05)"/><circle cx="1000" cy="100" r="80" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .section {
+            padding: 5rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .quick-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .quick-link:hover::before {
+            left: 100%;
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .document-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .document-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .document-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .document-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .document-link:hover {
+            color: #764ba2;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" onclick="showPage('home')">Villas at the Vineyard</a>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('minutes')">Board Minutes</a></li>
+                    <li><a href="#" onclick="showPage('financials')">Financial Reports</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page-content active">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Welcome Home</h1>
+                        <p>Villas at the Vineyard - A Premier Gated Community in The Village, Oklahoma</p>
+                        <a href="#about" class="cta-button">Discover Our Community</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <div class="container">
+                    <h2>About Our Community</h2>
+                    <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">
+                        Nestled in the heart of The Village, Oklahoma, the Villas at the Vineyard offers a unique blend of urban convenience and serene seclusion. Our gated community of 60 exquisite homes is just north of prestigious Nichols Hills, minutes from Lake Hefner, Casady Square, and premier shopping destinations.
+                    </p>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <span class="feature-icon">🏘️</span>
+                            <h3>Exclusive Community</h3>
+                            <p>60 beautifully designed homes in a secure, gated environment that prioritizes privacy and tranquility.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📍</span>
+                            <h3>Prime Location</h3>
+                            <p>Perfectly positioned near Lake Hefner, Nichols Hills Plaza, Penn Square Mall, and Chisholm Creek.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🤝</span>
+                            <h3>Active HOA</h3>
+                            <p>Dedicated homeowners association ensuring our community maintains its high standards and values.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-links">
+                        <a href="#" class="quick-link" onclick="showPage('minutes')">
+                            <h3>📋 Board Minutes</h3>
+                            <p>Access recent meeting minutes and board decisions</p>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showPage('financials')">
+                            <h3>💰 Financial Reports</h3>
+                            <p>View monthly financial statements and budgets</p>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showPage('contact')">
+                            <h3>📞 Contact Us</h3>
+                            <p>Get in touch with the HOA board and management</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Board Minutes Page -->
+        <div id="minutes" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>HOA Board Minutes</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                        Stay informed with the latest board meeting minutes and community decisions.
+                    </p>
+                    
+                    <div id="minutes-loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading board minutes from Google Drive...</p>
+                    </div>
+                    
+                    <div id="minutes-content" class="document-grid" style="display: none;">
+                        <!-- Minutes will be populated here -->
+                    </div>
+                    
+                    <div id="minutes-error" style="display: none; text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Unable to load board minutes at this time. Please try again later or contact the HOA directly.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Financial Reports Page -->
+        <div id="financials" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>Monthly Financial Reports</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                        Access current and historical financial statements for transparency and accountability.
+                    </p>
+                    
+                    <div id="financials-loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading financial reports from Google Drive...</p>
+                    </div>
+                    
+                    <div id="financials-content" class="document-grid" style="display: none;">
+                        <!-- Financial reports will be populated here -->
+                    </div>
+                    
+                    <div id="financials-error" style="display: none; text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Unable to load financial reports at this time. Please try again later or contact the HOA directly.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <span class="feature-icon">📧</span>
+                            <h3>Mailing Address</h3>
+                            <p>The Villas at the Vineyard Association, Inc.<br>
+                            [Address details to be provided]</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📱</span>
+                            <h3>Connect With Us</h3>
+                            <p>Find us on Facebook for community updates and announcements.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📞</span>
+                            <h3>Management Company</h3>
+                            <p>For urgent matters and general inquiries, contact our property management team.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" onclick="showPage('home')">Home</a></p>
+                    <p><a href="#" onclick="showPage('minutes')">Board Minutes</a></p>
+                    <p><a href="#" onclick="showPage('financials')">Financial Reports</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <p><a href="#" onclick="showPage('contact')">Contact Us</a></p>
+                    <p><a href="#">Facebook Page</a></p>
+                    <p><a href="#">Community Guidelines</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <p><a href="#">Architectural Guidelines</a></p>
+                    <p><a href="#">CC&Rs</a></p>
+                    <p><a href="#">Forms & Documents</a></p>
+                </div>
+            </div>
+            <p>&copy; 2025 Villas at the Vineyard HOA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update URL without reload
+            window.history.pushState({}, '', `#${pageId}`);
+            
+            // Load content if needed
+            if (pageId === 'minutes') {
+                loadBoardMinutes();
+            } else if (pageId === 'financials') {
+                loadFinancialReports();
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Google Drive integration functions
+        async function loadBoardMinutes() {
+            const loadingEl = document.getElementById('minutes-loading');
+            const contentEl = document.getElementById('minutes-content');
+            const errorEl = document.getElementById('minutes-error');
+            
+            // Show loading state
+            loadingEl.style.display = 'block';
+            contentEl.style.display = 'none';
+            errorEl.style.display = 'none';
+            
+            try {
+                // In a real implementation, this would connect to Google Drive API
+                // For demo purposes, we'll simulate loading with sample data
+                await simulateGoogleDriveLoad();
+                
+                const sampleMinutes = [
+                    {
+                        date: 'June 15, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering landscaping updates, budget review, and maintenance schedule.'
+                    },
+                    {
+                        date: 'May 18, 2025',
+                        title: 'Special Board Meeting Minutes',
+                        url: '#',
+                        description: 'Special meeting to discuss gate system upgrades and security enhancements.'
+                    },
+                    {
+                        date: 'May 15, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering annual meeting preparations and community events.'
+                    },
+                    {
+                        date: 'April 17, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering spring maintenance and architectural review updates.'
+                    }
+                ];
+                
+                displayDocuments(sampleMinutes, 'minutes-content');
+                
+            } catch (error) {
+                console.error('Error loading board minutes:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        async function loadFinancialReports() {
+            const loadingEl = document.getElementById('financials-loading');
+            const contentEl = document.getElementById('financials-content');
+            const errorEl = document.getElementById('financials-error');
+            
+            // Show loading state
+            loadingEl.style.display = 'block';
+            contentEl.style.display = 'none';
+            errorEl.style.display = 'none';
+            
+            try {
+                // In a real implementation, this would connect to Google Drive API
+                await simulateGoogleDriveLoad();
+                
+                const sampleReports = [
+                    {
+                        date: 'May 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for May 2025.'
+                    },
+                    {
+                        date: 'April 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for April 2025.'
+                    },
+                    {
+                        date: 'Q1 2025',
+                        title: 'Quarterly Budget Report',
+                        url: '#',
+                        description: 'First quarter budget analysis and variance report.'
+                    },
+                    {
+                        date: 'March 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for March 2025.'
+                    },
+                    {
+                        date: '2025',
+                        title: 'Annual Budget',
+                        url: '#',
+                        description: 'Approved annual budget for 2025 with detailed line items.'
+                    }
+                ];
+                
+                displayDocuments(sampleReports, 'financials-content');
+                
+            } catch (error) {
+                console.error('Error loading financial reports:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        function displayDocuments(documents, containerId) {
+            const container = document.getElementById(containerId);
+            const loadingEl = document.getElementById(containerId.replace('-content', '-loading'));
+            
+            container.innerHTML = documents.map(doc => `
+                <div class="document-item">
+                    <div class="document-date">${doc.date}</div>
+                    <div class="document-title">${doc.title}</div>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">${doc.description}</p>
+                    <a href="${doc.url}" class="document-link" target="_blank">View Document →</a>
+                </div>
+            `).join('');
+            
+            loadingEl.style.display = 'none';
+            container.style.display = 'grid';
+        }
+
+        function simulateGoogleDriveLoad() {
+            return new Promise(resolve => {
+                setTimeout(resolve, 1500); // Simulate loading time
+            });
+        }
+
+        // Handle initial page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.slice(1);
+            if (hash && ['home', 'minutes', 'financials', 'contact'].includes(hash)) {
+                showPage(hash);
+            }
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            const hash = window.location.hash.slice(1) || 'home';
+            showPage(hash);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target && target.id !== 'home' && target.id !== 'minutes' && target.id !== 'financials' && target.id !== 'contact') {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        /*
+        GOOGLE DRIVE INTEGRATION SETUP INSTRUCTIONS:
+        
+        To implement the Google Drive integration for automatic updates:
+        
+        1. Set up Google Drive API:
+           - Go to Google Cloud Console (console.cloud.google.com)
+           - Create a new project or select existing one
+           - Enable Google Drive API
+           - Create credentials (API key for public access or OAuth for private folders)
+           
+        2. Create shared Google Drive folders:
+           - Create a "HOA Board Minutes" folder
+           - Create a "Monthly Financial Reports" folder
+           - Set sharing permissions to "Anyone with the link can view" for public access
+           - Or use service account for private folders
+           
+        3. Get folder IDs:
+           - Open each folder in Google Drive
+           - Copy the folder ID from the URL (after /folders/)
+           
+        4. Replace the simulation functions with real API calls:
+        
+        async function loadGoogleDriveFiles(folderId) {
+            const API_KEY = 'YOUR_GOOGLE_DRIVE_API_KEY';
+            const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&orderBy=modifiedTime desc`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.files.map(file => ({
+                    date: new Date(file.modifiedTime).toLocaleDateString(),
+                    title: file.name,
+                    url: `https://drive.google.com/file/d/${file.id}/view`,
+                    description: file.description || 'Document available for download'
+                }));
+            } catch (error) {
+                throw new Error('Failed to load files from Google Drive');
+            }
+        }
+        
+        5. Update the load functions:
+        
+        async function loadBoardMinutes() {
+            const MINUTES_FOLDER_ID = 'YOUR_MINUTES_FOLDER_ID';
+            // Replace simulation with: const minutes = await loadGoogleDriveFiles(MINUTES_FOLDER_ID);
+        }
+        
+        async function loadFinancialReports() {
+            const REPORTS_FOLDER_ID = 'YOUR_REPORTS_FOLDER_ID';
+            // Replace simulation with: const reports = await loadGoogleDriveFiles(REPORTS_FOLDER_ID);
+        }
+        
+        6. For automatic updates, you can:
+           - Use webhooks with Google Drive API push notifications
+           - Set up periodic checks (every hour/day)
+           - Implement cache invalidation
+           
+        7. Optional: Add file type filtering and better error handling
+        */DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villas at the Vineyard HOA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🏡";
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:1" /><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23bg)"/><circle cx="200" cy="150" r="100" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="300" r="150" fill="rgba(255,255,255,0.05)"/><circle cx="1000" cy="100" r="80" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .section {
+            padding: 5rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .quick-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .quick-link:hover::before {
+            left: 100%;
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .document-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .document-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .document-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .document-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .document-link:hover {
+            color: #764ba2;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" onclick="showPage('home')">Villas at the Vineyard</a>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('minutes')">Board Minutes</a></li>
+                    <li><a href="#" onclick="showPage('financials')">Financial Reports</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page-content active">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Welcome Home</h1>
+                        <p>Villas at the Vineyard - A Premier Gated Community in The Village, Oklahoma</p>
+                        <a href="#about" class="cta-button">Discover Our Community</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <div class="container">
+                    <h2>About Our Community</h2>
+                    <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">
+                        Nestled in the heart of The Village, Oklahoma, the Villas at the Vineyard offers a unique blend of urban convenience and serene seclusion. Our gated community of 60 exquisite homes is just north of prestigious Nichols Hills, minutes from Lake Hefner, Casady Square, and premier shopping destinations.
+                    </p>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <span class="feature-icon">🏘️</span>
+                            <h3>Exclusive Community</h3>
+                            <p>60 beautifully designed homes in a secure, gated environment that prioritizes privacy and tranquility.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📍</span>
+                            <h3>Prime Location</h3>
+                            <p>Perfectly positioned near Lake Hefner, Nichols Hills Plaza, Penn Square Mall, and Chisholm Creek.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🤝</span>
+                            <h3>Active HOA</h3>
+                            <p>Dedicated homeowners association ensuring our community maintains its high standards and values.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-links">
+                        <a href="#" class="quick-link" onclick="showPage('minutes')">
+                            <h3>📋 Board Minutes</h3>
+                            <p>Access recent meeting minutes and board decisions</p>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showPage('financials')">
+                            <h3>💰 Financial Reports</h3>
+                            <p>View monthly financial statements and budgets</p>
+                        </a>
+                        <a href="#" class="quick-link" onclick="showPage('contact')">
+                            <h3>📞 Contact Us</h3>
+                            <p>Get in touch with the HOA board and management</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Board Minutes Page -->
+        <div id="minutes" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>HOA Board Minutes</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                        Stay informed with the latest board meeting minutes and community decisions.
+                    </p>
+                    
+                    <div id="minutes-loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading board minutes from Google Drive...</p>
+                    </div>
+                    
+                    <div id="minutes-content" class="document-grid" style="display: none;">
+                        <!-- Minutes will be populated here -->
+                    </div>
+                    
+                    <div id="minutes-error" style="display: none; text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Unable to load board minutes at this time. Please try again later or contact the HOA directly.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Financial Reports Page -->
+        <div id="financials" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>Monthly Financial Reports</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                        Access current and historical financial statements for transparency and accountability.
+                    </p>
+                    
+                    <div id="financials-loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Loading financial reports from Google Drive...</p>
+                    </div>
+                    
+                    <div id="financials-content" class="document-grid" style="display: none;">
+                        <!-- Financial reports will be populated here -->
+                    </div>
+                    
+                    <div id="financials-error" style="display: none; text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Unable to load financial reports at this time. Please try again later or contact the HOA directly.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page-content">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="features">
+                        <div class="feature-card">
+                            <span class="feature-icon">📧</span>
+                            <h3>Mailing Address</h3>
+                            <p>The Villas at the Vineyard Association, Inc.<br>
+                            [Address details to be provided]</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📱</span>
+                            <h3>Connect With Us</h3>
+                            <p>Find us on Facebook for community updates and announcements.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📞</span>
+                            <h3>Management Company</h3>
+                            <p>For urgent matters and general inquiries, contact our property management team.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" onclick="showPage('home')">Home</a></p>
+                    <p><a href="#" onclick="showPage('minutes')">Board Minutes</a></p>
+                    <p><a href="#" onclick="showPage('financials')">Financial Reports</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <p><a href="#" onclick="showPage('contact')">Contact Us</a></p>
+                    <p><a href="#">Facebook Page</a></p>
+                    <p><a href="#">Community Guidelines</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <p><a href="#">Architectural Guidelines</a></p>
+                    <p><a href="#">CC&Rs</a></p>
+                    <p><a href="#">Forms & Documents</a></p>
+                </div>
+            </div>
+            <p>&copy; 2025 Villas at the Vineyard HOA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update URL without reload
+            window.history.pushState({}, '', `#${pageId}`);
+            
+            // Load content if needed
+            if (pageId === 'minutes') {
+                loadBoardMinutes();
+            } else if (pageId === 'financials') {
+                loadFinancialReports();
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Google Drive integration functions
+        async function loadBoardMinutes() {
+            const loadingEl = document.getElementById('minutes-loading');
+            const contentEl = document.getElementById('minutes-content');
+            const errorEl = document.getElementById('minutes-error');
+            
+            // Show loading state
+            loadingEl.style.display = 'block';
+            contentEl.style.display = 'none';
+            errorEl.style.display = 'none';
+            
+            try {
+                // In a real implementation, this would connect to Google Drive API
+                // For demo purposes, we'll simulate loading with sample data
+                await simulateGoogleDriveLoad();
+                
+                const sampleMinutes = [
+                    {
+                        date: 'June 15, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering landscaping updates, budget review, and maintenance schedule.'
+                    },
+                    {
+                        date: 'May 18, 2025',
+                        title: 'Special Board Meeting Minutes',
+                        url: '#',
+                        description: 'Special meeting to discuss gate system upgrades and security enhancements.'
+                    },
+                    {
+                        date: 'May 15, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering annual meeting preparations and community events.'
+                    },
+                    {
+                        date: 'April 17, 2025',
+                        title: 'Regular Board Meeting Minutes',
+                        url: '#',
+                        description: 'Monthly board meeting covering spring maintenance and architectural review updates.'
+                    }
+                ];
+                
+                displayDocuments(sampleMinutes, 'minutes-content');
+                
+            } catch (error) {
+                console.error('Error loading board minutes:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        async function loadFinancialReports() {
+            const loadingEl = document.getElementById('financials-loading');
+            const contentEl = document.getElementById('financials-content');
+            const errorEl = document.getElementById('financials-error');
+            
+            // Show loading state
+            loadingEl.style.display = 'block';
+            contentEl.style.display = 'none';
+            errorEl.style.display = 'none';
+            
+            try {
+                // In a real implementation, this would connect to Google Drive API
+                await simulateGoogleDriveLoad();
+                
+                const sampleReports = [
+                    {
+                        date: 'May 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for May 2025.'
+                    },
+                    {
+                        date: 'April 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for April 2025.'
+                    },
+                    {
+                        date: 'Q1 2025',
+                        title: 'Quarterly Budget Report',
+                        url: '#',
+                        description: 'First quarter budget analysis and variance report.'
+                    },
+                    {
+                        date: 'March 2025',
+                        title: 'Monthly Financial Statement',
+                        url: '#',
+                        description: 'Income statement, balance sheet, and cash flow for March 2025.'
+                    },
+                    {
+                        date: '2025',
+                        title: 'Annual Budget',
+                        url: '#',
+                        description: 'Approved annual budget for 2025 with detailed line items.'
+                    }
+                ];
+                
+                displayDocuments(sampleReports, 'financials-content');
+                
+            } catch (error) {
+                console.error('Error loading financial reports:', error);
+                loadingEl.style.display = 'none';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        function displayDocuments(documents, containerId) {
+            const container = document.getElementById(containerId);
+            const loadingEl = document.getElementById(containerId.replace('-content', '-loading'));
+            
+            container.innerHTML = documents.map(doc => `
+                <div class="document-item">
+                    <div class="document-date">${doc.date}</div>
+                    <div class="document-title">${doc.title}</div>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">${doc.description}</p>
+                    <a href="${doc.url}" class="document-link" target="_blank">View Document →</a>
+                </div>
+            `).join('');
+            
+            loadingEl.style.display = 'none';
+            container.style.display = 'grid';
+        }
+
+        function simulateGoogleDriveLoad() {
+            return new Promise(resolve => {
+                setTimeout(resolve, 1500); // Simulate loading time
+            });
+        }
+
+        // Handle initial page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.slice(1);
+            if (hash && ['home', 'minutes', 'financials', 'contact'].includes(hash)) {
+                showPage(hash);
+            }
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            const hash = window.location.hash.slice(1) || 'home';
+            showPage(hash);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target && target.id !== 'home' && target.id !== 'minutes' && target.id !== 'financials' && target.id !== 'contact') {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        /*
+        GOOGLE DRIVE INTEGRATION SETUP INSTRUCTIONS:
+        
+        To implement the Google Drive integration for automatic updates:
+        
+        1. Set up Google Drive API:
+           - Go to Google Cloud Console (console.cloud.google.com)
+           - Create a new project or select existing one
+           - Enable Google Drive API
+           - Create credentials (API key for public access or OAuth for private folders)
+           
+        2. Create shared Google Drive folders:
+           - Create a "HOA Board Minutes" folder
+           - Create a "Monthly Financial Reports" folder
+           - Set sharing permissions to "Anyone with the link can view" for public access
+           - Or use service account for private folders
+           
+        3. Get folder IDs:
+           - Open each folder in Google Drive
+           - Copy the folder ID from the URL (after /folders/)
+           
+        4. Replace the simulation functions with real API calls:
+        
+        async function loadGoogleDriveFiles(folderId) {
+            const API_KEY = 'YOUR_GOOGLE_DRIVE_API_KEY';
+            const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&orderBy=modifiedTime desc`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.files.map(file => ({
+                    date: new Date(file.modifiedTime).toLocaleDateString(),
+                    title: file.name,
+                    url: `https://drive.google.com/file/d/${file.id}/view`,
+                    description: file.description || 'Document available for download'
+                }));
+            } catch (error) {
+                throw new Error('Failed to load files from Google Drive');
+            }
+        }
+        
+        5. Update the load functions:
+        
+        async function loadBoardMinutes() {
+            const MINUTES_FOLDER_ID = 'YOUR_MINUTES_FOLDER_ID';
+            // Replace simulation with: const minutes = await loadGoogleDriveFiles(MINUTES_FOLDER_ID);
+        }
+        
+        async function loadFinancialReports() {
+            const REPORTS_FOLDER_ID = 'YOUR_REPORTS_FOLDER_ID';
+            // Replace simulation with: const reports = await loadGoogleDriveFiles(REPORTS_FOLDER_ID);
+        }
+        
+        6. For automatic updates, you can:
+           - Use webhooks with Google Drive API push notifications
+           - Set up periodic checks (every hour/day)
+           - Implement cache invalidation
+           
+        7. Optional: Add file type filtering and better error handling
+        */
